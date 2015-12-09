@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :places, only: [:index, :new, :show, :create, :update, :destroy]
+  resources :places, only: [:index, :new, :show, :create, :update, :destroy] do
+    get "loadplace", to: "places#loadplace", as: "load", on: :collection
+  end
 
   devise_for :users
   root to: 'pages#home'
