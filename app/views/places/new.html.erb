@@ -1,7 +1,68 @@
 <h1>Places#new</h1>
 <p>Find me in app/views/places/new.html.erb</p>
 
+
+
+
 <div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
+      <div class="form-group">
+        <%= text_field_tag :place, '', class: 'form-control', placeholder: 'Search for the place' %>
+      </div>
+        <%= button_tag(type: "submit", class: "btn btn-default btn-default") do %>
+          Load info
+          <i class="fa fa-search"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+    <% if params[:place] %>
+    <h2><%= @spot.name %></h2>
+          <h6>Rating</h6>
+          <%= @spot.rating %>
+          <hr>
+          <h6>Picture</h6>
+          <%if @spot.photos.empty? %>
+          <p>No pictures yet</p>
+          <% else %>
+          <%= image_tag @spot.photos[0].fetch_url(1500), width: '500' %>
+          <% end %>
+          <hr>
+          <h6>Address</h6>
+          <%= @spot.formatted_address %>
+          <hr>
+          <h6>City</h6>
+          <%= @spot.city %>
+
+          <hr>
+          <h6>Categories</h6>
+          <% @spot.types.each do |type| %>
+          <ul>
+          <li><%= type %></li>
+          </ul>
+          <% end %>
+          <hr>
+          <h6>Price range</h6>
+          <%= @spot.price_level %>
+          <hr>
+          <h6>Phone number</h6>
+          <%= @spot.formatted_phone_number %>
+          </div>
+      <% end %>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <h1>Add a place</h1>
@@ -79,4 +140,12 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <h2><%= @spot.name %></h2>
+      <h6>Rating</h6>
+      <%= @spot.rating %>
+      <hr>
+      <h6>Picture</h6>
+      <%if @spot.photos.empty? %>
+      <p>No pictures yet</p>
+      <% else %>
+      <%= image_tag @spot.photos[0].fetch_url(1500), width: '500' %>
+      <% end %>
+      <hr>
+      <h6>Address</h6>
+      <%= @spot.formatted_address %>
+      <hr>
+      <h6>City</h6>
+      <%= @spot.city %>
+
+      <hr>
+      <h6>Categories</h6>
+      <% @spot.types.each do |type| %>
+      <ul>
+      <li><%= type %></li>
+      </ul>
+      <% end %>
+      <hr>
+      <h6>Price range</h6>
+      <%= @spot.price_level %>
+      <hr>
+      <h6>Phone number</h6>
+      <%= @spot.formatted_phone_number %>
+      </div>
+
+
+<!-- <form action="">
+  <input type="hidden" name="picture" value=>
+  <input type="submit">
+</form>
+</div>
+</div> -->
+
