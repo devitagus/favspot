@@ -1,2 +1,7 @@
-<h1>Places#index</h1>
-<p>Find me in app/views/places/index.html.erb</p>
+<% if @places.nil? -%>
+<div>
+  <p><strong>Count: </strong><%= @places.count.order('created_at DESC')-%></p>
+</div>
+<% else -%>
+<p>There are no places</p>
+<% end -%>

@@ -1,173 +1,158 @@
-<h1>Places#new</h1>
-<p>Find me in app/views/places/new.html.erb</p>
+    <h1>Places#new</h1>
+    <p>Find me in app/views/places/new.html.erb</p>
 
 
 
 
-<div class="container">
-  <div class="row">
+    <div class="container">
+    <div class="row">
     <div class="col-lg-6 col-md-offset-3">
-      <h1>Add a place</h1>
-        <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
-
-          <%= text_field_tag :place, '', class: 'form-control', placeholder: 'Search for a place' %>
+    <h1>Add a place</h1>
+    <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
 
 
-            <%= button_tag(type: "submit", class: "btn btn-info") do %>Go<i class="fa fa-search"></i>
-            <% end %>
+    <%= text_field_tag :place, '', class: 'form-control', placeholder: 'Search for a place' %>
 
-        <% end %>
 
-      <div class="row">
-        <div class="placecard">
-          <div class="col-left">
-            <%if @place.photos.nil? || @place.photos.empty?  %><p>No picture yet</p>
+      <%= button_tag(type: "submit", class: "btn btn-info") do %>Go<i class="fa fa-search"></i>
+      <% end %>
 
-            <% else %>
+    <% end %>
 
-              <%= image_tag @place.photos[0].fetch_url(1500), class: "img-responsive" %>
-              <% end %>
-          </div>
-
-          <div class="col-right">
-            <h5><%= @place.name %> | <%= @place.city %></h5>
-            <p><%= @place.address %></p>
-            <p>Rating: <%= @place.rating %></p>
-            <p>
-              <ul class="list-inline">
-                <% @place.categories.each do |cat| %>
-                  <li><%= cat %></li>
-                <% end %>
-              </ul>
-            </p>
-          </div>
+    <div class="row">
+      <div class="placecard">
+        <div class="col-left">
+        <%= find_photos -%>
         </div>
-      </div>
 
-      <div class="row">
-        <% if params[:place] %>
-        <h2><%= @place.name %></h2>
-              <h6>Rating</h6>
-              <%= @place.rating %>
-              <hr>
-              <h6>Picture</h6>
-              <%if @place.photos.nil? || @place.photos.empty?  %>
-              <p>No pictures yet</p>
-              <% else %>
-              <%= image_tag @place.photos[0].fetch_url(1500), width: '500' %>
-              <% end %>
-              <hr>
-              <h6>Address</h6>
-              <%= @place.address %>
-              <hr>
-              <h6>City</h6>
-              <%= @place.city %>
-
-              <hr>
-              <h6>Categories</h6>
-              <% @place.categories.each do |cat| %>
-              <ul>
-              <li><%= cat %></li>
-              </ul>
-              <% end %>
-
-              <hr>
-              <h6>Phone number</h6>
-              <%= @place.phone %>
-              </div>
-          <% end %>
-        </div>
-        </div>
-      </div>
+    <div class="col-right">
+    <h5><%= @place.name %> | <%= @place.city %></h5>
+    <p><%= @place.address %></p>
+    <p>Rating: <%= @place.rating %></p>
+    <p>
+    <ul class="list-inline">
+      <% @place.categories.each do |cat| %>
+        <li><%= cat %></li>
+      <% end %>
+    </ul>
+    </p>
     </div>
-  </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <% if params[:place] %>
+    <h2><%= @place.name %></h2>
+    <h6>Rating</h6>
+    <%= @place.rating %>
+    <hr>
+    <h6>Picture</h6>
+      <%= find_photos -%>
+    <hr>
+    <h6>Address</h6>
+    <%= @place.address %>
+    <hr>
+    <h6>City</h6>
+    <%= @place.city %>
+
+    <hr>
+    <h6>Categories</h6>
+    <% @place.categories.each do |cat| %>
+    <ul>
+    <li><%= cat %></li>
+    </ul>
+    <% end %>
+
+    <hr>
+    <h6>Phone number</h6>
+    <%= @place.phone %>
+    </div>
+    <% end %>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
 
 
-  <div class="row">
+    <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
 
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Search and save a new place
-        </div>
-        <div class="panel-body">
-
-            <%= form_for @place, html: {multipart: true, class: "formflat"} do |f| %>
-
-
-                <div class="col-md-12 select">
-                  <div class="form-group">
-                    <label>Place</label>
-                     <%= f.text_field :name, placeholder: "Type the name of the place", class: "form-control" %>
-                  </div>
-                </div>
-
-
-                <div class="col-md-12 select">
-                  <div class="form-group">
-                    <label>Address</label>
-                    <%= f.text_field :address, class: "form-control" %>
-                  </div>
-                </div>
-
-                <div class="col-md-12 select">
-                  <div class="form-group">
-                    <label>City</label>
-                    <%= f.text_field :city, class: "form-control" %>
-                  </div>
-                </div>
-
-                <!-- image upload -->
-
-                <!-- <div class="col-md-10">
-                <label>Fotos</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <span class="btn btn-default btn-file">
-                            Add pictures&hellip; <input type="file" multiple>
-                        </span>
-                    </span>
-                    <input type="text" class="form-control" readonly>
-                </div> -->
-
-            <!-- mike's image upload -->
-
-                <!-- <div class="row">
-                  <div class="col-md-12 select">
-                    <div class="form-group">
-                      <span class="btn btn-default btn-file">
-                        <i class="fa fa-cloud-upload fa-lg"></i>Upload Photos
-                        <%#= file_field_tag "image[]", type: :file, multiple: true %>
-                      </span>
-                    </div>
-                  </div>
-                </div> -->
-
-                <div class="row">
-                  <div class="col-md-12 select">
-                    <div class="form-group">
-                      <%= f.submit "Submit", class: "btn btn-primary" %>
-                    </div>
-                  </div>
-                </div>
-
-
-             <% end %>
-
-        </div>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    Search and save a new place
     </div>
-  </div>
-</div>
+    <div class="panel-body">
+
+    <%= form_for @place, html: { multipart: true, class: "formflat" } do |f| %>
+
+        <%= render 'shared/errors', object: f.object -%>
 
 
+      <div class="col-md-12 select">
+        <div class="form-group">
+          <label>Place</label>
+           <%= f.text_field :name, placeholder: "Type the name of the place", class: "form-control" %>
+        </div>
+      </div>
 
 
+      <div class="col-md-12 select">
+        <div class="form-group">
+          <label>Address</label>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-12 select">
+        <div class="form-group">
+          <label>City</label>
+          <%= f.text_field :city, class: "form-control" %>
+        </div>
+      </div>
+
+      <!-- image upload -->
+
+      <!-- <div class="col-md-10">
+      <label>Fotos</label>
+      <div class="input-group">
+          <span class="input-group-btn">
+              <span class="btn btn-default btn-file">
+                  Add pictures&hellip; <input type="file" multiple>
+              </span>
+          </span>
+          <input type="text" class="form-control" readonly>
+      </div> -->
+
+    <!-- mike's image upload -->
+
+      <!-- <div class="row">
+        <div class="col-md-12 select">
+          <div class="form-group">
+            <span class="btn btn-default btn-file">
+              <i class="fa fa-cloud-upload fa-lg"></i>Upload Photos
+              <%#= file_field_tag "image[]", type: :file, multiple: true %>
+            </span>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-12 select">
+          <div class="form-group">
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
 
 
+    <% end %>
 
-
-
+    </div>
+    </div>
+    </div>
+    </div>
