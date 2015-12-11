@@ -29,4 +29,50 @@
 }
 
 
+.panel-horizontal {
+  margin-top: 20px;
+}
+
+.panel-horizontal .panel-heading {
+       float: left;
+       width: 30%;
+       padding: 0;
+       border-bottom: 0;
+       border-right: 1px solid transparent;
+       border-top-right-radius: 0;
+       margin-bottom: 0;
+}
+
+.panel-horizontal .panel-body {
+       float: right;
+       margin: 0 0 15px 0;
+       padding-bottom: 0;
+       width: 70%;
+       padding: 0;
+}
+
+// .panel-horizontal {
+//     display:table;
+//     width:100%;
+// }
+// .panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+//     display:table-cell;
+// }
+// .panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+//     width: 25%;
+//     border:0;
+//     vertical-align: middle;
+// }
+// .panel-horizontal > .panel-heading {
+//     border-right: 1px solid #ddd;
+//     border-top-right-radius: 0;
+//     border-bottom-left-radius: 4px;
+// }
+// .panel-horizontal > .panel-footer {
+//     border-left: 1px solid #ddd;
+//     border-top-left-radius: 0;
+//     border-bottom-right-radius: 4px;
+// }
+
+
 

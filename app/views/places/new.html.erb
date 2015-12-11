@@ -6,61 +6,77 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-lg-6 col-md-offset-3">
       <h1>Add a place</h1>
-      <div class="panel panel-default">
-        <div class="panel-body">
+        <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
+
+          <%= text_field_tag :place, '', class: 'form-control', placeholder: 'Search for a place' %>
 
 
-          <%= form_tag(new_place_path,  method: :get, class: 'form-horizontal') do |f| %>
-            <div class="col-xs-8">
-            <%= text_field_tag :place, '', class: 'form-control', placeholder: 'Search for a place' %>
-          </div>
-          <div class="col-xs-4">
-
-            <%= button_tag(type: "submit", class: "btn btn-info") do %>
-              Go
-              <i class="fa fa-search"></i>
+            <%= button_tag(type: "submit", class: "btn btn-info") do %>Go<i class="fa fa-search"></i>
             <% end %>
-</div>
 
-          <% end %>
+        <% end %>
 
+      <div class="row">
+        <div class="placecard">
+          <div class="col-left">
+            <%if @place.photos.nil? || @place.photos.empty?  %><p>No picture yet</p>
 
+            <% else %>
 
+              <%= image_tag @place.photos[0].fetch_url(1500), class: "img-responsive" %>
+              <% end %>
+          </div>
+
+          <div class="col-right">
+            <h5><%= @place.name %> | <%= @place.city %></h5>
+            <p><%= @place.address %></p>
+            <p>Rating: <%= @place.rating %></p>
+            <p>
+              <ul class="list-inline">
+                <% @place.categories.each do |cat| %>
+                  <li><%= cat %></li>
+                <% end %>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
         <% if params[:place] %>
-        <h2><%= @spot.name %></h2>
+        <h2><%= @place.name %></h2>
               <h6>Rating</h6>
-              <%= @spot.rating %>
+              <%= @place.rating %>
               <hr>
               <h6>Picture</h6>
-              <%if @spot.photos.empty? %>
+              <%if @place.photos.nil? || @place.photos.empty?  %>
               <p>No pictures yet</p>
               <% else %>
-              <%= image_tag @spot.photos[0].fetch_url(1500), width: '500' %>
+              <%= image_tag @place.photos[0].fetch_url(1500), width: '500' %>
               <% end %>
               <hr>
               <h6>Address</h6>
-              <%= @spot.formatted_address %>
+              <%= @place.address %>
               <hr>
               <h6>City</h6>
-              <%= @spot.city %>
+              <%= @place.city %>
 
               <hr>
               <h6>Categories</h6>
-              <% @spot.types.each do |type| %>
+              <% @place.categories.each do |cat| %>
               <ul>
-              <li><%= type %></li>
+              <li><%= cat %></li>
               </ul>
               <% end %>
-              <hr>
-              <h6>Price range</h6>
-              <%= @spot.price_level %>
+
               <hr>
               <h6>Phone number</h6>
-              <%= @spot.formatted_phone_number %>
+              <%= @place.phone %>
               </div>
           <% end %>
+        </div>
         </div>
       </div>
     </div>

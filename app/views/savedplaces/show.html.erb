@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="col-lg-6 col-md-offset-3">
+
+    <div class="row">
+    <h1><%= @savedplace.place.name %></h1>
+    </div>
+
+<!-- show-place -->
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
+       <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %><p>No picture yet</p>
+        <% else %>
+          <%= image_tag @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
+        <% end %>
+
+
+        <h5><%= @savedplace.place.name %></h5>
+        <p><%= @savedplace.place.address %></p>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+

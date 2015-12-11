@@ -11,6 +11,14 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCmtjCERax6MXKjxLv41v76Ai0ooP3cFv0&libraries=places" %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:after_js) %>
+
+
   </body>
 </html>
+
+
