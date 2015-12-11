@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
+
+  resources :savedplaces, only: [:index, :show]
+
   resources :places, only: [:index, :new, :show, :create, :update, :destroy] do
-    get "loadplace", to: "places#loadplace", as: "load", on: :collection
+    get "add", to: "places#add", as: "add", on: :collection
   end
 
   devise_for :users

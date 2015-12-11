@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="col-lg-6 col-md-offset-3">
+    <div class="row">
+    <h1>Add a place</h1>
+
+      <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
+            <%= text_field_tag :place, '',class: 'form-control', id:'pac-input', placeholder: 'Search for a place' %>
+              <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
+              <%= button_tag(type: "submit", class: "btn btn-info") do %>Go<i class="fa fa-search"></i>
+              <% end %>
+          <% end %>
+    </div>
+
+<!-- list-user-places -->
+  <div class="row">
+    <% current_user.savedplaces.reverse.each do |savedplace| %>
+      <div class="panel panel-default ">
+        <div class="panel-body horizontal">
+          <div class="col-left">
+            <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
+            <% else %>
+              <%= image_tag savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
+
+            <% end %>
+          </div>
+          <div class="col-right">
+            <h5><%= savedplace.place.name %></h5>
+            <p><%= savedplace.place.address %></p>
+            <p class="text-right"><%= link_to 'More info', savedplace_path(savedplace), class: "btn btn-info btn-xs"%></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+</div>
+
+
+
