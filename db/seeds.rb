@@ -27,19 +27,21 @@ admin2 = User.create(
 
 
 admin2.save!
-# 5.times do |place|
-#   place =  Place.new(
-#     :name => Faker::Name.name,
-#     :address => Faker::Address.street,
-#     :city => Faker::Address.city,
-#     :phone => '122223342',
-#     :category => 'testcategory',
-#     :googleid => "AIzaSyCmtjCERax6MXKjxLv41v76Ai0ooP3cFv0",
-#     :photos => "https://i.imgur.com/SiwUkyY.gif"
-#   )
-# end
 
-# place.save!
+
+15.times do
+    Place.create!(
+        :name => Faker::Name.name,
+        :address => Faker::Address.street_name,
+        :city => Faker::Address.city,
+        :phone => Faker::PhoneNumber.phone_number,
+        :categories => [],
+        :googleid => ENV['GOOGLE_ID'],
+        :photos => []
+    )
+end
+
+places = Place.all
 
 puts "#{User.count} were created."
 puts "#{Place.count} were created."

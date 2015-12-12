@@ -37,6 +37,10 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
 end
+
+
 gem 'rspec-rails', group: [:development, :test]
+gem 'shoulda-matchers', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 gem 'database_cleaner', group: [:development, :test]
+gem 'bundler-audit', group: [:development, :test]

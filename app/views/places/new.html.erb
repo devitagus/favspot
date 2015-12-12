@@ -1,9 +1,3 @@
-    <h1>Places#new</h1>
-    <p>Find me in app/views/places/new.html.erb</p>
-
-
-
-
     <div class="container">
     <div class="row">
     <div class="col-lg-6 col-md-offset-3">
@@ -22,7 +16,7 @@
     <div class="row">
       <div class="placecard">
         <div class="col-left">
-        <%= find_photos -%>
+        <%#= places.find_photos -%>
         </div>
 
     <div class="col-right">
@@ -47,7 +41,7 @@
     <%= @place.rating %>
     <hr>
     <h6>Picture</h6>
-      <%= find_photos -%>
+      <%#= places.find_photos -%>
     <hr>
     <h6>Address</h6>
     <%= @place.address %>

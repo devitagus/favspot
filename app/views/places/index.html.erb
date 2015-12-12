@@ -1,7 +1,7 @@
-<% if @places.nil? -%>
-<div>
-  <p><strong>Count: </strong><%= @places.count.order('created_at DESC')-%></p>
-</div>
+<% if @places.any? -%>
+  <div>
+    <p><strong>Count: </strong><%= @places.count.order('created_at DESC')-%></p>
+  </div>
 <% else -%>
-<p>There are no places</p>
+  <p>There are no places, care to add  <%= link_to "one", new_place_path, class: 'form-control, btn btn-primary'  %>?</p>
 <% end -%>

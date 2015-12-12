@@ -1,0 +1,9 @@
+<div class="col-sm-3">
+  <div class="well">
+    <p><strong>ID: </strong><%= @user.id -%></p>
+    <p><strong>email: </strong><%= @user.email -%> </p>
+    <p><strong>Places: </strong><%#= @user.places.count -%></p>
+    <%= link_to "View saved places", places_path, class: 'form-control, btn btn-primary' %>
+    <%= link_to "Add A Place", new_place_path, class: 'form-control, btn btn-primary'  %>
+  </div>
+</div>
