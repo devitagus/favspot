@@ -8,9 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="container">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+      <%#= render 'shared/errors' %>
+      <%= yield -%>
+    </div>
+
 
 
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCmtjCERax6MXKjxLv41v76Ai0ooP3cFv0&libraries=places" %>

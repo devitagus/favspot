@@ -1,3 +1,14 @@
+<!-- [FIX:] Why not? I found this little method earlier today -->
+
+<%# unless notice.blank? -%>
+  <%#=  notice -%>
+<%# unless alert.blank? -%>
+  <%#=  alert -%>
+<%# end -%>
+
+
+
+
 <% if notice %>
   <div class="alert alert-info alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

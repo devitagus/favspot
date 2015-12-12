@@ -13,7 +13,7 @@ class PlacesController < ApplicationController
       @place = Place.find_by(search_query: params[:place])
       if @place.nil?
         @query = params[:place]
-        @client = GooglePlaces::Client.new('AIzaSyDpnqHIiNQfb_dGZgzfgn2z1uxciJkLHYg')
+        @client = GooglePlaces::Client.new(ENV['GOOGLE_ID'])
         @spot = @client.spots_by_query(@query).first
         @place_id = @spot.place_id
         @spot = @client.spot(@place_id)
@@ -37,9 +37,13 @@ class PlacesController < ApplicationController
 
       if @place.nil?
 
-        @client = GooglePlaces::Client.new('AIzaSyDpnqHIiNQfb_dGZgzfgn2z1uxciJkLHYg')
+        @client = GooglePlaces::Client.new(ENV['GOOGLE_ID'])
 
-        if params[:place_id].empty?
+        # [FIX:] SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed
+        # error
+
+        if params[:place_id].nil?
+
           @query = params[:place]
           @spot = @client.spots_by_query(@query).first
           @place_id = @spot.place_id
@@ -62,11 +66,13 @@ class PlacesController < ApplicationController
 
   #POST
   def create
+    raise
+    @place.user = current_user
     @place = current_user.places.build(place_params)
     if @place.save
       current_user.savedplaces.build(place: @place)
       flash[:notice] = "Your place was saved."
-      redirect_to place_path(@place.id)
+      redirect_to place_path(@place)
     else
       flash[:notice] = "Oops something went wrong"
       render "new"

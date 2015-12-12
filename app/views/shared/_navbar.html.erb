@@ -2,7 +2,7 @@
   <div class="container navbar-wagon-container">
 
     <a href="">
-      <%= image_tag "logo.png", class: "navbar-wagon-logo" %>
+      <%= link_to image_tag "logo.png", class: "navbar-wagon-logo" %>
     </a>
 
     <div class="navbar-wagon-pusher"></div>
@@ -14,8 +14,9 @@
       </button>
     </form>
     <hr class="hidden-xs hidden-sm">
-    <% if user_signed_in? %>
+    <% if current_user %>
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link hidden-xs" do %>
+
         <div class="icon-badge-container">
           <i class="fa fa-envelope-o"></i>
           <div class="icon-badge icon-badge-blue">3</div>
@@ -27,8 +28,9 @@
           <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+
+              <%= link_to user_path(current_user), id: 'profile' do %>
+                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" , id:'profile' %>
               <% end %>
             </li>
             <li>

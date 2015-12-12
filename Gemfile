@@ -7,6 +7,11 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 
+
+gem 'rails-erd'
+gem 'faker'
+gem 'letter_opener'
+
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'uglifier'
@@ -32,3 +37,10 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
 end
+
+
+gem 'rspec-rails', group: [:development, :test]
+gem 'shoulda-matchers', group: [:development, :test]
+gem 'factory_girl_rails', group: [:development, :test]
+gem 'database_cleaner', group: [:development, :test]
+gem 'bundler-audit', group: [:development, :test]
