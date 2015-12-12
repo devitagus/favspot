@@ -18,6 +18,7 @@
         <% else %>
           <%= image_tag @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
         <% end %>
+        <%= render 'shared/uploadpicture' %>
 
        <br>
 

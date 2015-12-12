@@ -8,29 +8,7 @@ class PlacesController < ApplicationController
   def show
   end
 
-  def add
-    if params[:place]
-      @place = Place.find_by(search_query: params[:place])
-      if @place.nil?
-        @query = params[:place]
-        @client = GooglePlaces::Client.new('AIzaSyDpnqHIiNQfb_dGZgzfgn2z1uxciJkLHYg')
-        @spot = @client.spots_by_query(@query).first
-        @place_id = @spot.place_id
-        @spot = @client.spot(@place_id)
-        @place = Place.create(search_query: params[:place], name: @spot.name, address: @spot.formatted_address, city: @spot.city, categories: @spot.types, photos: @spot.photos, rating: @spot.rating, google_result: @spot.to_json)
-      end
-    end
-    if @place.save
-      current_user.savedplaces.build(place: @place)
-      flash[:notice] = "Your place was saved."
-      redirect_to places_path(@place.id)
-    else
-      flash[:notice] = "Oops something went wrong"
-      render "new"
-    end
-  end
-
-  def new
+   def new
     @place = Place.new
     if params[:place]
       @place = Place.find_by(search_query: params[:place])
