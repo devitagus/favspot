@@ -8,10 +8,15 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "bootstrap-material-design";
+@import "bootstrap-tokenfield";
 
 // Your CSS
 @import "layout/index";
 @import "components/index";
 @import "pages/index";
 @import "vendor/index";
+
+.hidden {
+  diplay: none;
+}
 

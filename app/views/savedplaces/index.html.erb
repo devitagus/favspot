@@ -20,7 +20,6 @@
             <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
             <% else %>
               <%= image_tag savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
-
             <% end %>
           </div>
           <div class="col-right">

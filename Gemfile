@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'google_places'
 gem 'bootstrap-material-design'
+gem 'best_in_place', '~> 3.1'
+gem 'bootstrap_tokenfield_rails'
 
 
 
