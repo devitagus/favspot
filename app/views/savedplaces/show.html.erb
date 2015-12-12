@@ -3,23 +3,68 @@
 
     <div class="row">
     <h1><%= @savedplace.place.name %></h1>
+
     </div>
 
 <!-- show-place -->
   <div class="row">
     <div class="panel panel-default">
       <div class="panel-body">
+
+      <h4 class = "headline"><%= best_in_place @savedplace, :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
+      <p class = "notop small">By <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
+
        <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %><p>No picture yet</p>
         <% else %>
           <%= image_tag @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
         <% end %>
 
+       <br>
 
-        <h5><%= @savedplace.place.name %></h5>
-        <p><%= @savedplace.place.address %></p>
+       <% if @savedplace.tag.nil? && @savedplace.tip.nil? %>
+       <%= render 'shared/editsavedplace' %>
+       <% else %>
+
+       <div id="showinfo">
+        <% if @savedplace.tag.empty? %>
+        <h6>No tags yet</h6>
+        <% else %>
+        <h6>Tags</h6>
+        <%= @savedplace.tag %><hr>
+        <% end %>
+        <% if @savedplace.tip.empty? %>
+        <h6>No tips yet</h6>
+        <% else %>
+        <h6>Tips and notes</h6>
+        <%= @savedplace.tip %>
+        <% end %>
+        <div class="text-right" id="add-form">
+          <p class="btn btn-info btn-xs">add tags and tips</p>
+        </div>
+       </div>
+
+       <div class="hidden" id="formedit">
+         <%= render 'shared/editsavedplace' %>
+       </div>
+       <% end %>
+
+      <h6>Category</h6>
+      <ul class="list-inline">
+      <% @savedplace.place.categories.each do |cat| %>
+      <li><%= cat %></li>
+      <% end %>
+      <hr>
+
+      <h6>Address</h6>
+       <p><%= @savedplace.place.address %></p>
+
       </div>
     </div>
   </div>
  </div>
 </div>
+
+<script>
+
+</script>
 

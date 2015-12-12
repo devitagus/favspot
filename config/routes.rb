@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
 
-  resources :savedplaces, only: [:index, :show]
+  # resources :usertips, only: [:update, :create]
+
+  resources :savedplaces, only: [:index, :show, :edit, :update] do
+    resources :usertips, only: [:update]
+  end
+
+  resources :usertips, only: [:create]
 
   resources :places, only: [:index, :new, :show, :create, :update, :destroy] do
     get "add", to: "places#add", as: "add", on: :collection
