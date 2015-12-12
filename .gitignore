@@ -5,6 +5,11 @@ tmp/*
 *.swp
 .DS_Store
 public/assets
+.keep
 
 # Ignore application configuration
 /config/application.yml
+
+assets/stylesheets/README.md
+
+.favspot-d944cea7fd93.json
