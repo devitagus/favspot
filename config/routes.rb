@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # resources :usertips, only: [:update, :create]
 
   resources :savedplaces, only: [:index, :show, :edit, :update] do
+    resources :userpics, only: [:create]
     resources :usertips, only: [:update]
   end
 

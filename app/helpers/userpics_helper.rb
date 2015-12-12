@@ -1,0 +1,2 @@
+module UserpicsHelper
+end

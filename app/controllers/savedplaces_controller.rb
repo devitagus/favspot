@@ -14,6 +14,7 @@ respond_to :html, :json
   end
 
   def show
+    @userpic = Userpic.new
     @usertip = Usertip.new
     # @usertips = @savedplace.usertips
   end
@@ -24,6 +25,7 @@ respond_to :html, :json
   def update
     @savedplace.update(savedplace_params)
     respond_with @savedplace
+
     # redirect_to savedplace_path(@savedplace)
     # @savedplace = @cocktail.doses.build(dose_params)
   end
