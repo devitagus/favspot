@@ -19,7 +19,7 @@ $('#tokenfield').tokenfield({
 })
 
 
-// Display edit form
+// Display edit savedplace form
 
 $('#add-form').click(function(){
 $('#showinfo').replaceWith($('#formedit'));

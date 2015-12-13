@@ -1,0 +1,29 @@
+.banner {
+  background-image: image-url("barcelona.jpg");
+  position: relative;
+  padding: 50px 0; /* use it to define size and be responsive*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  z-index: 0;
+  // color: white;
+  // text-align: center;
+  // h1 {
+  //   font-size: 50px; /*mobile first*/
+  //   font-weight: 700;
+  //   @media (min-width: $screen-sm-min) {
+  //     font-size: 70px;
+  //   }
+  // }
+}
+
+.img-gradient {
+  background-image: linear-gradient(-225deg, rgba(0, 101, 1, 0.2) 0%, rgba(60, 80, 80, 0.3) 50%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
