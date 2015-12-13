@@ -20,7 +20,7 @@ gem 'best_in_place', '~> 3.1'
 gem 'bootstrap_tokenfield_rails'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
-
+gem 'omniauth-facebook'
 
 
 group :development, :test do
