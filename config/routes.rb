@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
+
+
   root to: 'pages#home'
 
   # resources :usertips, only: [:update, :create]
 
+resources :users, only: [:index, :show, :edit, :update] do
   resources :savedplaces, only: [:index, :show, :edit, :update] do
     resources :userpics, only: [:create]
     resources :usertips, only: [:update]
   end
+end
 
   resources :usertips, only: [:create]
 

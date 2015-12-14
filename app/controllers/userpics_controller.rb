@@ -2,10 +2,11 @@ class UserpicsController < ApplicationController
   before_action :find_savedplace
 
   def create
+    @user = current_user
     params[:image].each do |image|
       @savedplace.userpics.create(image: image)
     end
-  redirect_to savedplace_path(@savedplace)
+  redirect_to user_savedplace_path(@user, @savedplace)
   end
 
   def update
