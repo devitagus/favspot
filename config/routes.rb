@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+root to: 'pages#home'
 
+# devise_for :users
 
-  root to: 'pages#home'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   # resources :usertips, only: [:update, :create]
 
-resources :users, only: [:index, :show, :edit, :update] do
+resources :users, only: [:show, :edit, :update] do
   resources :savedplaces, only: [:index, :show, :edit, :update] do
     resources :userpics, only: [:create]
     resources :usertips, only: [:update]
@@ -19,9 +21,7 @@ end
     get "add", to: "places#add", as: "add", on: :collection
   end
 
-  # devise_for :users
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
 
   # The priority is based upon order of creation: first created -> highest priority.
