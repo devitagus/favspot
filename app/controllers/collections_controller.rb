@@ -11,11 +11,11 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = @user.collections.find(params[:id])
+    @collectedplaces = @collection.collectedplaces
   end
 
   def create
     @collection = Collection.new(collection_params)
-    # @collection.set_user!(current_user)
     @collection = current_user.collections.build(collection_params)
     if @collection.save
       flash[:notice] = "Your collection was created."

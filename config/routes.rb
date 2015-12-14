@@ -18,6 +18,8 @@ resources :users, only: [:show, :edit, :update] do
   end
 end
 
+resources :collectedplaces, only: [:new, :create]
+
   resources :usertips, only: [:create]
 
   resources :places, only: [:index, :new, :show, :create, :update, :destroy] do

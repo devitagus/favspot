@@ -1,2 +1,29 @@
-<h1><%= @collection.name %></h1>
-<p>Find me in app/views/collections/show.html.erb</p>
+<div class="container">
+  <div class="col-lg-6 col-md-offset-3">
+    <div class="row">
+    <h1><%= @collection.name %></h1>
+  </div>
+
+
+<div class="row">
+<%  @collectedplaces.reverse.each do |collected| %>
+  <div class="panel panel-default ">
+    <div class="panel-body horizontal">
+      <div class="col-left">
+        <% if collected.savedplace.place.photos.nil? || collected.savedplace.place.photos.empty? %><p>No picture yet</p>
+        <% else %>
+          <%= image_tag collected.savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
+        <% end %>
+      </div>
+      <div class="col-right">
+        <h5><%= collected.savedplace.place.name %></h5>
+        <p><%= collected.savedplace.place.address %></p>
+
+        <p class="text-right"><%= link_to 'More info', user_savedplace_path(@user, collected.savedplace), class: "btn btn-info btn-xs"%></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+

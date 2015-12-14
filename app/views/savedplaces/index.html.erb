@@ -6,7 +6,7 @@
       <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
             <%= text_field_tag :place, '',class: 'form-control', id:'pac-input', placeholder: 'Search for a place' %>
               <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
-              <%= button_tag(type: "submit", class: "btn btn-info") do %>Go<i class="fa fa-search"></i>
+              <%= button_tag(type: "submit", class: "btn btn-primary") do %>Add place
               <% end %>
           <% end %>
     </div>
@@ -25,7 +25,8 @@
           <div class="col-right">
             <h5><%= savedplace.place.name %></h5>
             <p><%= savedplace.place.address %></p>
-            <p class="text-right"><%= link_to 'More info', user_savedplace_path(@user,savedplace), class: "btn btn-info btn-xs"%></p>
+
+            <p class="text-right"><%= link_to 'More info', user_savedplace_path(@user,savedplace), class: "btn btn-primary btn-xs"%></p>
           </div>
         </div>
       </div>
