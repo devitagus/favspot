@@ -1,0 +1,18 @@
+<%= form_for [@user, @collection] do |f| %>
+
+      <div class="col-md-12 select">
+        <div class="form-group">
+          <label>Collection name</label>
+           <%= f.text_field :name, placeholder: "E.g: Best brunch places in Barcelona", class: "form-control" %>
+        </div>
+      </div>
+
+
+       <div class="row">
+        <div class="col-md-12 select">
+          <div class="form-group text-right">
+            <%= f.submit "Save", class: "btn btn-info btn-xs" %>
+          </div>
+        </div>
+      </div>
+      <% end %>

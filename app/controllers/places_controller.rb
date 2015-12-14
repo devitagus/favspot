@@ -30,7 +30,7 @@ class PlacesController < ApplicationController
       @saved_place = current_user.savedplaces.build(place: @place)
       if @saved_place.save
         flash[:notice] = "Your place was saved."
-        redirect_to users_savedplaces_path
+        redirect_to user_savedplaces_path(current_user)
       else
         flash[:notice] = "Oops something went wrong"
         render "new"
