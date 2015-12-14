@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
 root to: 'pages#home'
 
 # devise_for :users
@@ -8,7 +9,9 @@ root to: 'pages#home'
 
   # resources :usertips, only: [:update, :create]
 
+
 resources :users, only: [:show, :edit, :update] do
+  resources :collections, only: [:index, :show, :new, :create]
   resources :savedplaces, only: [:index, :show, :edit, :update] do
     resources :userpics, only: [:create]
     resources :usertips, only: [:update]
