@@ -10,7 +10,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
 
-      <h4 class = "headline"><%= best_in_place @savedplace, :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
+      <h4 class = "headline"><%= best_in_place [@user, @savedplace], :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
       <p class = "notop small">By <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
 
        <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %><p>No picture yet</p>
