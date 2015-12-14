@@ -1,0 +1,2 @@
+module CollectedplaceHelper
+end

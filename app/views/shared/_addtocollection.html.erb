@@ -1,0 +1,7 @@
+<%= form_tag(collectedplaces_path,  method: :post, class: 'form-inline add-collection') do |f| %>
+  <%= collection_select :collection, :id, current_user.collections.all, :id, :name, {include_blank: false }, {size: 10, :multiple => true, class: "form-control"} %>
+    <%= hidden_field_tag :savedplace_id, "", :value => @savedplace.id %>
+    <%= button_tag(type: "submit", class: "btn btn-info btn-xs") do %>Add
+    <% end %>
+<% end %>
+

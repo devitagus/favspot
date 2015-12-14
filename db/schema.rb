@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213164911) do
+ActiveRecord::Schema.define(version: 20151214151722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collectedplaces", force: :cascade do |t|
+    t.integer  "savedplace_id"
+    t.integer  "collection_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "collectedplaces", ["collection_id"], name: "index_collectedplaces_on_collection_id", using: :btree
+  add_index "collectedplaces", ["savedplace_id"], name: "index_collectedplaces_on_savedplace_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
@@ -117,6 +127,8 @@ ActiveRecord::Schema.define(version: 20151213164911) do
 
   add_index "usertips", ["savedplace_id"], name: "index_usertips_on_savedplace_id", using: :btree
 
+  add_foreign_key "collectedplaces", "collections"
+  add_foreign_key "collectedplaces", "savedplaces"
   add_foreign_key "collections", "users"
   add_foreign_key "googlepics", "places"
   add_foreign_key "savedplaces", "places"

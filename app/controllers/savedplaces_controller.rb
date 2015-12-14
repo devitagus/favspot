@@ -32,6 +32,7 @@ class SavedplacesController < ApplicationController
   end
 
 
+
   private
 
   def savedplace_params
