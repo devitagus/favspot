@@ -1,15 +1,11 @@
 .panel {
 
-  .col-left {
-    width: 20%;
-    float: left;
+  .pull-left {
+    padding: 10px;
   }
 
-  .col-right {
-    width: 80%;
-    float: right;
-    padding-left: 5px;
-    padding-right: 10px;
+  .pull-right {
+    padding-left: 25px;
   }
 
   .thumb {
@@ -27,8 +23,11 @@
     background-size: cover;
   }
 
-.img-highlight-thumb {
-    height: 100px;
+.img-thumb {
+    // width: 100px;
+    padding: 50px;
+    // height: 100px;
     background-size: cover;
+    background-position: center center;
   }
 

@@ -11,10 +11,24 @@
   }
 }
 
-.form-inline .form-control {
-  width: 90%;
-  background: white;
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+
+.form-inline .searchplace {
+  background: rgba(0, 0, 0, 0.25);
   padding: 3px 10px;
+  border: 3px solid #ADADAD;
+  height: 45px;
+  width: 85%;
+  font-size: 17px;
+
+}
+
+.form-inline .searchplace:focus {
+  color: wheat;
 }
 
 select[multiple].form-control {
