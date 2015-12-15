@@ -11,6 +11,12 @@
   }
 }
 
+.form-inline .form-control {
+  width: 90%;
+  background: white;
+  padding: 3px 10px;
+}
+
 select[multiple].form-control {
   height: 100%;
 }

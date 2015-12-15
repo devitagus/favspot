@@ -18,9 +18,17 @@
   }
 }
 
-.panel-body.horizontal {
-  padding: 0px;
-}
+  .panel-body.horizontal {
+    padding: 0px;
+  }
 
+.img-highlight {
+    height: 300px;
+    background-size: cover;
+  }
 
+.img-highlight-thumb {
+    height: 100px;
+    background-size: cover;
+  }
 

@@ -1,40 +1,83 @@
 <div class="container">
   <div class="col-lg-6 col-md-offset-3">
     <div class="row">
-    <h1>Add a place</h1>
+    <h1>All your places</h1>
 
       <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
             <%= text_field_tag :place, '',class: 'form-control', id:'pac-input', placeholder: 'Search for a place' %>
               <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
-              <%= button_tag(type: "submit", class: "btn btn-primary") do %>Add place
+              <%= button_tag(type: "submit", class: "btn btn-primary") do %><i class="fa fa-plus"></i>
               <% end %>
           <% end %>
+          <div>
+            <div id="btn-toggle-map" class="btn icon-xs">
+              <i class="fa fa-map-o"> View map</i>
+            </div>
+          </div>
     </div>
 
 <!-- list-user-places -->
-  <div class="row">
-    <% @savedplaces.reverse.each do |savedplace| %>
-      <div class="panel panel-default ">
-        <div class="panel-body horizontal">
-          <div class="col-left">
-            <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
-            <% else %>
-              <%= image_tag savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
-            <% end %>
-          </div>
-          <div class="col-right">
-            <h5><%= savedplace.place.name %></h5>
-            <p><%= savedplace.place.address %></p>
+    <div class="row">
+      <div id="list-wrapper">
+      <% @savedplaces.reverse.each do |savedplace| %>
+        <div class="panel panel-default" >
+          <div class="panel-body horizontal">
+            <div class="col-left">
+              <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
+              <% else %>
+                <%= image_tag savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
+              <% end %>
+            </div>
+            <div class="col-right">
+              <h5><%= savedplace.place.name %></h5>
+              <p><%= savedplace.place.address %></p>
 
-            <p class="text-right"><%= link_to 'More info', user_savedplace_path(@user,savedplace), class: "btn btn-primary btn-xs"%></p>
+              <p class="text-right"><%= link_to 'Go', user_savedplace_path(@user,savedplace), class: "btn btn-primary btn-xs"%></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+    </div>
+
+
+    <div class="row">
+      <div id="map" style="width: 100%; height: 600px;"></div>
+    </div>
+
   </div>
-
-
 </div>
+
+
+<!-- Maps script with toggle -->
+
+<% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+            $(document).on('ready', function() {
+
+            var mapOptions = { scrollwheel: false };
+
+              $("#map").addClass("hide");
+
+              $("#btn-toggle-map").on("click", function(){
+
+                $("#map").toggleClass("hide")
+                $("#list-wrapper").toggleClass("hide")
+
+                handler = Gmaps.build('Google');
+                handler.buildMap({
+                  provider: mapOptions,
+                  internal: { id: 'map' } }, function(){
+                  markers = handler.addMarkers(<%= raw @markers.to_json %>);
+                  handler.bounds.extendWith(markers);
+                  handler.fitMapToBounds();
+                });
+
+              })
+
+            })
+          <% end %>
+        <% end %>
 
 
 

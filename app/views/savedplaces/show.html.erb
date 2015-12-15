@@ -10,66 +10,71 @@
     <div class="panel panel-default">
       <div class="panel-body">
 
-      <h4 class = "headline"><%= best_in_place [@user, @savedplace], :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
-      <p class = "notop small">By <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
+        <h4 class = "headline"><%= best_in_place [@user, @savedplace], :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
+        <p class = "notop small">By <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
 
-       <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %><p>No picture yet</p>
-        <% else %>
-          <%= image_tag @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
-        <% end %>
-        <%= render 'shared/uploadpicture' %>
+         <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %>
+          <% else %>
+            <div class="img-highlight" style="background-image: url(<%= image_url @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
+          <% end %>
+          <%= render 'shared/uploadpicture' %>
 
-       <br>
+         <br>
 
-       <% if @savedplace.tag.nil? && @savedplace.tip.nil? %>
-       <%= render 'shared/editsavedplace' %>
-       <% else %>
-
-       <div id="showinfo">
-        <% if @savedplace.tag.empty? %>
-        <h6>No tags yet</h6>
-        <% else %>
-        <h6>Tags</h6>
-        <%= @savedplace.tag %><hr>
-        <% end %>
-        <% if @savedplace.tip.empty? %>
-        <h6>No tips yet</h6>
-        <% else %>
-        <h6>Tips and notes</h6>
-        <%= @savedplace.tip %>
-        <% end %>
-        <div class="text-right" id="add-form">
-          <p class="btn btn-primary btn-xs">add tags and tips</p>
-        </div>
-       </div>
-
-       <div class="hidden" id="formedit">
+         <% if @savedplace.tag.nil? && @savedplace.tip.nil? %>
          <%= render 'shared/editsavedplace' %>
-       </div>
-       <% end %>
+         <% else %>
 
-      <h6>Category</h6>
-      <ul class="list-inline">
-      <% @savedplace.place.categories.each do |cat| %>
-      <li><%= cat %></li>
-      <% end %>
-      <hr>
-      <h6>Address</h6>
-       <p><%= @savedplace.place.address %></p>
-      <hr>
-      <h6>Saved in</h6>
-      <ul class="list-unstyle">
-      <% @savedplace.collections.each do |collection| %>
-      <li><%= collection.name %></li>
-      <% end %>
+         <div id="showinfo">
+          <% if @savedplace.tag.empty? %>
+          <h6>No tags yet</h6>
+          <% else %>
+          <h6>Tags</h6>
+          <%= @savedplace.tag %><hr>
+          <% end %>
+          <% if @savedplace.tip.empty? %>
+          <h6>No tips yet</h6>
+          <% else %>
+          <h6>Tips and notes</h6>
+          <%= @savedplace.tip %>
+          <% end %>
+          <div class="text-right" id="add-form">
+            <p class="btn btn-primary btn-xs">add tags and tips</p>
+          </div>
+         </div>
 
-      <div class="text-right">
-       <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Add to a collection</button>
+         <div class="hidden" id="formedit">
+           <%= render 'shared/editsavedplace' %>
+         </div>
+         <% end %>
+
+        <h6>Category</h6>
+        <ul class="list-inline">
+        <% @savedplace.place.categories.each do |cat| %>
+        <li><%= cat %></li>
+        <% end %>
+        <hr>
+        <h6>Saved in</h6>
+        <ul class="list-unstyle">
+        <% @savedplace.collections.each do |collection| %>
+        <li><%= collection.name %></li>
+        <% end %>
+        </ul>
+
+        <div class="text-right">
+         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Add to a collection</button>
+
+        </div>
+
+        <h6>Address</h6>
+         <p><%= @savedplace.place.address %></p>
+        <hr>
+        <div id="map" style="width: 100%; height: 300px;"></div>
 
       </div>
     </div>
   </div>
- </div>
+</div>
 </div>
 
 
@@ -93,7 +98,24 @@
     </div>
   </div>
 
-<script>
+<!-- Maps script with toggle -->
 
-</script>
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      var mapOptions = { scrollwheel: false };
+      handler = Gmaps.build('Google');
+      handler.buildMap({
+        provider: mapOptions,
+        internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
+<% end %>
+
+
+
 

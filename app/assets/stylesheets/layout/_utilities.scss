@@ -33,6 +33,7 @@
 
 .btn {
   border-radius: 0px;
+  padding: 7px 15px;
 }
 
 .btn-primary:not(.btn-link):not(.btn-flat) {
@@ -65,11 +66,19 @@
 
 body {
   font-family: 'Open Sans';
+  font-size: 15px;
 }
 
+h1 {
+  font-size: 30px;
+}
 
 .icon-md {
   font-size: 25px;
+}
+
+.icon-xs {
+  font-size: 17px;
 }
 
 

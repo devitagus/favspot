@@ -21,6 +21,15 @@ gem 'bootstrap_tokenfield_rails'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 gem 'omniauth-facebook'
+gem "geocoder"
+
+# Map
+gem "coffee-rails"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 
 group :development, :test do
