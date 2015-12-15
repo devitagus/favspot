@@ -25,7 +25,7 @@ class PlacesController < ApplicationController
         else
           @spot = @client.spot(params[:place_id])
         end
-        @place = Place.create(search_query: params[:place], name: @spot.name, address: @spot.formatted_address, city: @spot.city, categories: @spot.types, photos: @spot.photos, rating: @spot.rating, google_result: @spot.to_json)
+        @place = Place.create(search_query: params[:place], name: @spot.name, address: @spot.formatted_address, city: @spot.city, categories: @spot.types, photos: @spot.photos, rating: @spot.rating, phone: @spot.formatted_phone_number, latitude: @spot.lat, longitude: @spot.lng, google_result: @spot.to_json)
       end
       @saved_place = current_user.savedplaces.build(place: @place)
       if @saved_place.save
@@ -43,7 +43,7 @@ class PlacesController < ApplicationController
     @place = current_user.places.build(place_params)
     if @place.save
       current_user.savedplaces.build(place: @place)
-      flash[:notice] = "Your place was saved."
+      flash[:notice] = "The place was saved."
       redirect_to place_path(@place.id)
     else
       flash[:notice] = "Oops something went wrong"
@@ -61,7 +61,7 @@ private
 
 def place_params
     # (:todo) is the class, (:title) is the attribute
-    params.require(:place).permit(:name, :address, :city, :category, :googleid)
+    params.require(:place).permit(:name, :address, :city, :category, :phone, :latitude, :longitude, :googleid)
   end
 
   def set_place
