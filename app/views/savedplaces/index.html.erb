@@ -4,14 +4,14 @@
     <h1>All your places</h1>
 
       <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
-            <%= text_field_tag :place, '',class: 'form-control', id:'pac-input', placeholder: 'Search for a place' %>
+            <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Search for a place' %>
               <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
-              <%= button_tag(type: "submit", class: "btn btn-primary") do %><i class="fa fa-plus"></i>
+              <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
               <% end %>
           <% end %>
           <div>
             <div id="btn-toggle-map" class="btn icon-xs">
-              <i class="fa fa-map-o"> View map</i>
+              <i class="fa fa-map-o"></i> View map
             </div>
           </div>
     </div>
@@ -22,13 +22,13 @@
       <% @savedplaces.reverse.each do |savedplace| %>
         <div class="panel panel-default" >
           <div class="panel-body horizontal">
-            <div class="col-left">
+            <div class="col-xs-3 pull-left">
               <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
               <% else %>
-                <%= image_tag savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>
+              <div class="img-thumb" style="background-image: url(<%= image_url savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
               <% end %>
             </div>
-            <div class="col-right">
+            <div class="col-xs-9 pull-right">
               <h5><%= savedplace.place.name %></h5>
               <p><%= savedplace.place.address %></p>
 
@@ -38,7 +38,7 @@
         </div>
       <% end %>
     </div>
-    </div>
+  </div>
 
 
     <div class="row">
