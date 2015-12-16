@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215092105) do
+ActiveRecord::Schema.define(version: 20151216140335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20151215092105) do
   add_index "savedplaces", ["place_id"], name: "index_savedplaces_on_place_id", using: :btree
   add_index "savedplaces", ["user_id"], name: "index_savedplaces_on_user_id", using: :btree
 
+  create_table "user_places_categories", force: :cascade do |t|
+    t.integer  "savedplace_id"
+    t.string   "name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "user_places_categories", ["savedplace_id"], name: "index_user_places_categories_on_savedplace_id", using: :btree
+
   create_table "userpics", force: :cascade do |t|
     t.integer  "savedplace_id"
     t.datetime "created_at",         null: false
@@ -135,6 +144,7 @@ ActiveRecord::Schema.define(version: 20151215092105) do
   add_foreign_key "googlepics", "places"
   add_foreign_key "savedplaces", "places"
   add_foreign_key "savedplaces", "users"
+  add_foreign_key "user_places_categories", "savedplaces"
   add_foreign_key "userpics", "savedplaces"
   add_foreign_key "usertags", "savedplaces"
   add_foreign_key "usertips", "savedplaces"
