@@ -1,6 +1,6 @@
 class SavedplacesController < ApplicationController
 
-before_action :find_savedplace, only: [:show, :update, :edit]
+before_action :set_savedplace, only: [:show, :update, :edit]
 before_action :authenticate_user!, only: [:show, :index]
 respond_to :html, :json
 
