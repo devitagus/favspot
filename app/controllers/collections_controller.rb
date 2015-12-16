@@ -15,9 +15,9 @@ class CollectionsController < ApplicationController
     @savedplaces = @user.savedplaces
 
     # DYNAMICALLY build the markers for the view.
-    @markers = Gmaps4rails.build_markers(@savedplaces) do |savedplace, marker|
-      marker.lat savedplace.place.latitude
-      marker.lng savedplace.place.longitude
+    @markers = Gmaps4rails.build_markers(@collectedplaces) do |collected, marker|
+      marker.lat collected.savedplace.place.latitude
+      marker.lng collected.savedplace.place.longitude
     end
   end
 
