@@ -19,7 +19,6 @@ class SavedplacesController < ApplicationController
   def show
     @savedplace = @user.savedplaces.find(params[:id])
     @userpic = Userpic.new
-    @usertip = Usertip.new
 
     # DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@savedplace) do |savedplace, marker|
