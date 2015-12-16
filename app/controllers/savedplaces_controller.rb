@@ -17,7 +17,6 @@ class SavedplacesController < ApplicationController
   end
 
   def show
-    raise
     @savedplace = @user.savedplaces.find(params[:id])
     @userpic = Userpic.new
 
