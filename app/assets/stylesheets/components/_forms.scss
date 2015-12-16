@@ -31,6 +31,10 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   color: wheat;
 }
 
+.form-inline .searchplace {
+  color: wheat;
+}
+
 select[multiple].form-control {
   height: 100%;
 }
