@@ -15,7 +15,7 @@ class PlacesController < ApplicationController
 
       if @place.nil?
 
-        @client = GooglePlaces::Client.new('AIzaSyDpnqHIiNQfb_dGZgzfgn2z1uxciJkLHYg')
+        @client = GooglePlaces::Client.new('AIzaSyB_BKWWs67Ib71xF65K7eg4Yr_y2hyExhU')
 
         if params[:place_id].empty?
           @query = params[:place]
