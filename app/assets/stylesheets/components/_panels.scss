@@ -31,3 +31,13 @@
     background-position: center center;
   }
 
+
+.left-picture {
+  width: 180px;
+  padding: 10px;
+  float: left;
+}
+.right-text{
+width: calc(100% - 180px);
+  float: left;
+}

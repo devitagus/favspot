@@ -22,13 +22,13 @@
       <% @savedplaces.reverse.each do |savedplace| %>
         <div class="panel panel-default" >
           <div class="panel-body horizontal">
-            <div class="col-xs-3 pull-left">
+            <div class="left-picture">
               <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
               <% else %>
               <div class="img-thumb" style="background-image: url(<%= image_url savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
               <% end %>
             </div>
-            <div class="col-xs-9 pull-right">
+            <div class="right-text">
               <h5><%= savedplace.place.name %></h5>
               <p><%= savedplace.place.address %></p>
 

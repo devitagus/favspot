@@ -2,3 +2,22 @@
  * SASS code SPECIFIC TO your home page
  * (margin/padding adjustments, background image, etc..)
  * ------------------------------------- */
+
+
+.col-left-home {
+  padding: 0px 0;
+}
+
+.headline-home {
+  padding: 20px;
+  background: rgba(40, 32, 43, 0.7);
+  border-bottom:7px solid #EB4D5C;
+  font-size: 50px;
+  font-family: 'Roboto';
+  color: #D0CFD2;
+
+  .btn-tour {
+    font-size: 20px;
+  }
+  }
+
