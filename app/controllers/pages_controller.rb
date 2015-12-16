@@ -3,5 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @resource = User.new
+    @collection = Collection.new
+    @user = current_user
+    @savedplaces = @user.savedplaces
+    @collections = @user.collections
   end
 end

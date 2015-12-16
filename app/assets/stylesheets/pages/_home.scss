@@ -16,8 +16,10 @@
   font-family: 'Roboto';
   color: #D0CFD2;
 
-  .btn-tour {
+
+.btn-info:not(.btn-link):not(.btn-flat) {
     font-size: 20px;
+    background: #CC4350;
   }
   }
 
