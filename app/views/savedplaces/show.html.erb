@@ -21,18 +21,18 @@
 
          <br>
 
-         <% if @savedplace.tag.nil? && @savedplace.tip.nil? %>
+         <% if @savedplace.usertags.empty? && @savedplace.tip.nil? %>
          <%= render 'shared/editsavedplace' %>
          <% else %>
 
          <div id="showinfo">
-          <% if @savedplace.tag.empty? %>
+          <% if @savedplace.tag.nil? || @savedplace.tag.empty? %>
           <h6>No tags yet</h6>
           <% else %>
           <h6>Tags</h6>
-          <%= @savedplace.tag %><hr>
+          <%= text_field_tag "", @savedplace.tag, class: "tokenize", id: "tagsfield" %><hr>
           <% end %>
-          <% if @savedplace.tip.empty? %>
+          <% if @savedplace.tip.nil? || @savedplace.tip.empty? %>
           <h6>No tips yet</h6>
           <% else %>
           <h6>Tips and notes</h6>
@@ -112,9 +112,18 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
-    })
+
+      $("#tagsfield").tokenfield("readonly");
+    });
   <% end %>
 <% end %>
+
+<style>
+  .readonly .token a {
+    cursor: default;
+  }
+</style>
+
 
 
 

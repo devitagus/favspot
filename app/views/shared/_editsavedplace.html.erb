@@ -4,7 +4,7 @@
       <div class="col-md-12 select">
         <div class="form-group">
           <label>Add tags</label>
-           <%= f.text_field :tag, placeholder: "E.g: #brunch, #kids, #cool", class: "form-control" %>
+           <%= f.text_field :tag, placeholder: "#brunch, #kids, #cool", class: "tokenize" %>
         </div>
       </div>
       <div class="col-md-12 select">
@@ -22,3 +22,7 @@
         </div>
       </div>
       <% end %>
+
+     <%= content_for :after_js do %>
+      <script>$('input.tokenize').tokenfield();</script>
+    <% end %>
