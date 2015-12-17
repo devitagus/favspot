@@ -48,9 +48,6 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="addplace">
-                <% @array_cities.each do |city| %>
-   <%=  link_to "Comm", user_savedplaces_path(@user, :city => "#{city}") %>
-    <% end %>
                <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
                 <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>
                 <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
@@ -70,6 +67,33 @@
           </div>
         </div>
       </div>
+
+
+       <!-- Cities list -->
+      <div class="row">
+        <% @array_cities.each do |city| %>
+          <div class="panel panel-default ">
+            <div class="panel-body">
+              <div class="list-group">
+                <div class="list-group-item">
+                  <div class="row-picture">
+                    <%= image_tag("#{city}.jpg", class: "circle") %>
+                  </div>
+                  <div class="row-content">
+                    <div class="action-secondary"><i class="material-icons">send</i></div>
+                    <h5 class="list-group-item-heading"><%=  link_to "#{city}", user_savedplaces_path(@user, :city => "#{city}") %></h5>
+
+                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+                  </div>
+                </div>
+                <div class="list-group-separator"></div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
     <% end %>
   </div>
