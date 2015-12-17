@@ -3,6 +3,7 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = @user.collections
+    @collection = Collection.new
   end
 
   def new

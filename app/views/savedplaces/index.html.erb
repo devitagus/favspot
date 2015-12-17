@@ -2,7 +2,11 @@
   <div class="row">
   <div class="col-lg-6 col-md-offset-3">
     <div class="row">
+    <% if params.include?(:city) %>
+    <h1>All your places in <%= params[:city] %></h1>
+    <% else %>
     <h1>All your places</h1>
+    <% end %>
 
       <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
             <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>

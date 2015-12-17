@@ -1,0 +1,27 @@
+<div class="panel-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#addplace" aria-controls="addplace" role="tab" data-toggle="tab">Add new place</a></li>
+                <li role="presentation"><a href="#addcollection" aria-controls="addcollection" role="tab" data-toggle="tab">Create placelist</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="addplace">
+               <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
+                <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>
+                <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
+                <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
+                <% end %>
+              <% end %>
+              <p><%= link_to 'All my places', user_savedplaces_path(@user), class: "btn btn-primary btn-md"%></p>
+              </div>
+                <div role="tabpanel" class="tab-pane" id="addcollection">
+                  <%= form_for [@user, @collection], :html => {class: 'form-inline'} do |f| %>
+                <%= f.text_field :name, placeholder: "E.g: Best brunch places in Barcelona", class: "searchplace" %>
+                <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
+                 <% end %>
+              <% end %>
+              <p><%= link_to 'All my placelists', user_collections_path(@user), class: "btn btn-primary btn-md"%></p>
+            </div>
+          </div>
+        </div>

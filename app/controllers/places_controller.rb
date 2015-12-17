@@ -29,6 +29,10 @@ class PlacesController < ApplicationController
       end
       @saved_place = current_user.savedplaces.build(place: @place)
       if @saved_place.save
+        if params[:collection_id]
+          collection = Collection.find(params[:collection_id])
+          collection.collectedplaces.create(savedplace: @saved_place)
+        end
         flash[:notice] = "Your place was saved."
         redirect_to request.referrer
       else

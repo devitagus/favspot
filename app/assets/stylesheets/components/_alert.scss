@@ -6,12 +6,15 @@
   margin-top: 0px;
   text-align: center;
   color: white;
-  position: relative;
-  top: -19px;
-  left: 0;
+  position: absolute;
+  top: 11px;
+  left: 30%;
+  right: 30%;
+  padding: 5px;
+  z-index: 9999;
 }
 .alert-info {
-  background: rgba(0,0,0,0.07);
+  background: rgba(76,150,137,0.5);
 }
 .alert-warning {
   background: $red;
