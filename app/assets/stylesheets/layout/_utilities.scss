@@ -41,12 +41,13 @@
 }
 
 .btn-xl {
-  padding: 13px 17px;
+  padding: 14px 17px;
   margin-top: 1px;
+  background: #4C9689;
 }
 
 .btn-primary:not(.btn-link):not(.btn-flat) {
-  background-color: #4D394B;
+  background-color: #4C9689;
 
   &:hover {
     background-color: #4D394B;
@@ -56,6 +57,7 @@
 
 .btn-facebook:not(.btn-link):not(.btn-flat) {
     background-color: #3b5998;
+    width: 100%;
     color: #F5F5F5;
     text-align: left;
     &:hover {
@@ -82,6 +84,18 @@ h1 {
   font-size: 30px;
   color: #D0CFD2;
 }
+
+.strong {
+     font-weight: 400;
+  }
+
+
+// .headline-home {
+//   h1 {
+//     font-size: 70px;
+//     padding: 150px 0;
+//   }
+// }
 
 .icon-md {
   font-size: 25px;

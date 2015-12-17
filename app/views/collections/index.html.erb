@@ -3,16 +3,31 @@
     <div class="row">
      <h1>Collections#index</h1>
     </div>
-    <div class="row">
-      <% @collections.each do |collection| %>
+      <% @collections.reverse.each do |collection| %>
       <div class="panel panel-default ">
         <div class="panel-body">
-          <%= link_to collection.name, user_collection_path(@user,collection) %>
+          <div class="list-group">
+            <div class="list-group-item">
+              <div class="row-action-primary">
+                <i class="material-icons">folder</i>
+              </div>
+              <div class="row-content">
+                <div class="action-secondary"><i class="material-icons">info</i></div>
+                <h5 class="list-group-item-heading"><%= link_to collection.name, user_collection_path(@user,collection) %></h5>
+
+                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+              </div>
+            </div>
+            <div class="list-group-separator"></div>
+          </div>
         </div>
       </div>
       <% end %>
     </div>
   </div>
 </div>
+
+ <%#= link_to collection.name, user_collection_path(@user,collection) %>
+
 
 
