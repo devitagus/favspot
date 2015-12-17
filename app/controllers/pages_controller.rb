@@ -4,8 +4,10 @@ class PagesController < ApplicationController
   def home
     @resource = User.new
     @collection = Collection.new
-    @user = current_user
-    @savedplaces = @user.savedplaces
-    @collections = @user.collections
+    if user_signed_in?
+      @user = current_user
+      @savedplaces = @user.savedplaces
+      @collections = @user.collections
+    end
   end
 end
