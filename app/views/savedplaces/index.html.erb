@@ -26,7 +26,9 @@
             <div class="left-picture">
               <% if savedplace.place.photos.nil? || savedplace.place.photos.empty? %><p>No picture yet</p>
               <% else %>
-              <div class="img-thumb" style="background-image: url(<%= image_url savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
+              <% if url = savedplace.place.photos[0].fetch_url(1500) %>
+                <div class="img-thumb" style="background-image: url(<%= image_url savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
+                <% end %>
               <% end %>
             </div>
             <div class="right-text">

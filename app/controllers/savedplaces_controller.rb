@@ -22,6 +22,7 @@ class SavedplacesController < ApplicationController
 
   def show
     @savedplace = @user.savedplaces.find(params[:id])
+    @savedplace.tag =  @savedplace.usertags.map(&:tag).join(", ")
     @userpic = Userpic.new
 
     # DYNAMICALLY build the markers for the view.
@@ -40,12 +41,13 @@ class SavedplacesController < ApplicationController
   def update
     @savedplace = @user.savedplaces.find(params[:id])
     @savedplace.update(savedplace_params)
+    params[:savedplace][:tag].split(",").each do |tag|
+      Usertag.create(tag: tag.strip, savedplace: @savedplace )
+    end
     respond_with @savedplace, :location => user_savedplace_path(@user,@savedplace)
     # redirect_to savedplace_path(@savedplace)
     # @savedplace = @cocktail.doses.build(dose_params)
   end
-
-
 
   private
 

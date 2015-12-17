@@ -6,6 +6,7 @@ class Savedplace < ActiveRecord::Base
   has_many :collectedplaces
   has_many :collections, through: :collectedplaces
   has_many :user_places_categories
+  has_many :usertags
 
   after_create :map_categories_to_category
 
