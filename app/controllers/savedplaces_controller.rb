@@ -4,7 +4,11 @@ class SavedplacesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @savedplaces = @user.savedplaces
+    if has_filter?
+      @savedplaces = @user.savedplaces.joins(:place).where("places.city = ?", params[:city])
+    else
+      @savedplaces = @user.savedplaces
+    end
     # DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@savedplaces) do |savedplace, marker|
       marker.lat savedplace.place.latitude
@@ -51,6 +55,10 @@ class SavedplacesController < ApplicationController
 
   def find_user
     @user = User.find(params[:user_id])
+  end
+
+  def has_filter?
+    params.include?(:city)
   end
 end
 
