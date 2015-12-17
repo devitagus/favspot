@@ -41,6 +41,7 @@ class SavedplacesController < ApplicationController
   def update
     @savedplace = @user.savedplaces.find(params[:id])
     @savedplace.update(savedplace_params)
+    check_deleted_tags
     params[:savedplace][:tag].split(",").each do |tag|
       Usertag.create(tag: tag.strip, savedplace: @savedplace )
     end
@@ -50,6 +51,13 @@ class SavedplacesController < ApplicationController
   end
 
   private
+
+  def check_deleted_tags
+    to_be_deleted_tags = @savedplace.usertags.map(&:tag) - params[:savedplace][:tag].split(",")
+    to_be_deleted_tags.each do |delete_tag|
+      @savedplace.usertags.find_by(tag: delete_tag).destroy
+    end
+  end
 
   def savedplace_params
       params.require(:savedplace).permit(:headline, :tag, :tip, :notes)
