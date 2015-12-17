@@ -83,7 +83,7 @@
                     <div class="action-secondary"><i class="material-icons">send</i></div>
                     <h5 class="list-group-item-heading"><%=  link_to "#{city}", user_savedplaces_path(@user, :city => "#{city}") %></h5>
 
-                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="list-group-item-text"><%= @user.savedplaces.joins(:place).where("places.city = ?", city).size %> Saved places</p>
                   </div>
                 </div>
                 <div class="list-group-separator"></div>
