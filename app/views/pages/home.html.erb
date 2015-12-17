@@ -48,13 +48,16 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="addplace">
+                <% @array_cities.each do |city| %>
+   <%=  link_to "Comm", user_savedplaces_path(@user, :city => "#{city}") %>
+    <% end %>
                <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
                 <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>
                 <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
                 <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
                 <% end %>
               <% end %>
-              <p><%= link_to 'All my places', user_savedplaces_path(@user,@savedplaces), class: "btn btn-primary btn-xs"%></p>
+              <p><%= link_to 'All my places', user_savedplaces_path(@user), class: "btn btn-primary btn-xs"%></p>
               </div>
                 <div role="tabpanel" class="tab-pane" id="addcollection">
                   <%= form_for [@user, @collection], :html => {class: 'form-inline'} do |f| %>
@@ -62,7 +65,7 @@
                 <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
                  <% end %>
               <% end %>
-              <p><%= link_to 'All my placelists', user_collections_path(@user,@collections), class: "btn btn-primary btn-xs"%></p>
+              <p><%= link_to 'All my placelists', user_collections_path(@user), class: "btn btn-primary btn-xs"%></p>
             </div>
           </div>
         </div>
@@ -71,6 +74,8 @@
     <% end %>
   </div>
 </div>
+
+
 
 
 
