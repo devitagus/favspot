@@ -2,8 +2,17 @@
   <div class="col-lg-6 col-md-offset-3">
     <div class="row">
       <h1><%= @collection.name %></h1>
-      <div id="btn-toggle-map" class="btn icon-xs">
-      <i class="fa fa-map-o"> View map</i>
+      <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
+        <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>
+          <%= hidden_field_tag :place_id, "", class: "place_id_value" %>
+          <%= hidden_field_tag :collection_id, @collection.id %>
+          <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
+          <% end %>
+      <% end %>
+      <div>
+        <div id="btn-toggle-map" class="btn icon-xs">
+        <i class="fa fa-map-o"> View map</i>
+      </div>
       </div>
     </div>
 

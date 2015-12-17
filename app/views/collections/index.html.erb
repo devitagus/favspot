@@ -1,29 +1,40 @@
 <div class="container">
-  <div class="col-lg-6 col-md-offset-3">
-    <div class="row">
-     <h1>Collections#index</h1>
-    </div>
-      <% @collections.reverse.each do |collection| %>
-      <div class="panel panel-default ">
-        <div class="panel-body">
-          <div class="list-group">
-            <div class="list-group-item">
-              <div class="row-action-primary">
-                <i class="material-icons">folder</i>
-              </div>
-              <div class="row-content">
-                <div class="action-secondary"><i class="material-icons">info</i></div>
-                <h5 class="list-group-item-heading"><%= link_to collection.name, user_collection_path(@user,collection) %></h5>
+  <div class="row">
+    <div class="col-lg-6 col-md-offset-3">
+      <div class="row">
+       <h1>Your placelists</h1>
+       <%= form_for [@user, @collection], :html => {class: 'form-inline'} do |f| %>
+        <%= f.text_field :name, placeholder: "E.g: Best brunch places in Barcelona", class: "searchplace" %>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
+         <% end %>
+      <% end %>
+      </div>
+      <br>
+      <br>
 
-                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+      <div class="row">
+        <% @collections.reverse.each do |collection| %>
+        <div class="panel panel-default ">
+          <div class="panel-body">
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="row-action-primary">
+                  <i class="material-icons">view_list</i>
+                </div>
+                <div class="row-content">
+                  <div class="action-secondary"><i class="material-icons">share</i></div>
+                  <h5 class="list-group-item-heading"><%= link_to collection.name, user_collection_path(@user,collection) %></h5>
+
+                  <p class="list-group-item-text"> <%= @user.collectedplaces.where(collection: collection).size%> <%="place".pluralize(@user.collectedplaces.where(collection: collection).size) %></p>
+                </div>
               </div>
+              <div class="list-group-separator"></div>
             </div>
-            <div class="list-group-separator"></div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
+      </div>
   </div>
 </div>
 
