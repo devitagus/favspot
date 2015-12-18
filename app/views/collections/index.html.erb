@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-offset-3">
-      <div class="row">
-       <h1>Your placelists</h1>
+       <div class="row text-center">
+        <%= link_to image_tag("#{@user.picture}", class: "avatar-large"), root_path %>
+       <h1>Placelists</h1>
        <%= form_for [@user, @collection], :html => {class: 'form-inline'} do |f| %>
         <%= f.text_field :name, placeholder: "E.g: Best brunch places in Barcelona", class: "searchplace" %>
         <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>

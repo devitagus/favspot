@@ -1,6 +1,8 @@
 <div class="container">
   <div class="col-lg-6 col-md-offset-3">
-    <div class="row">
+    <div class="row text-center">
+
+    <%= link_to image_tag("#{@user.picture}", class: "avatar-large"), root_path %>
       <h1><%= @collection.name %></h1>
       <%= form_tag(new_place_path,  method: :get, class: 'form-inline') do |f| %>
         <%= text_field_tag :place, '',class: 'searchplace', id:'pac-input', placeholder: 'Add a new place' %>
@@ -9,12 +11,17 @@
           <%= button_tag(type: "submit", class: "btn btn-primary btn-xl") do %><i class="fa fa-plus"></i>
           <% end %>
       <% end %>
-      <div>
+      </div>
+        <div class="row">
+
         <div id="btn-toggle-map" class="btn icon-xs">
-        <i class="fa fa-map-o"> View map</i>
-      </div>
-      </div>
+          <i class="fa fa-map-o"></i> View map</div>
+
+        <div id="btn-toggle-map" class="btn icon-xs">
+          <i class="fa fa-book"></i> Order print</div>
+
     </div>
+
 
 
 <!-- list-user-places -->
