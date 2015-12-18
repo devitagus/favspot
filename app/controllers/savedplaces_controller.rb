@@ -41,6 +41,7 @@ class SavedplacesController < ApplicationController
   def update
     @savedplace = @user.savedplaces.find(params[:id])
     @savedplace.update(savedplace_params)
+
     check_deleted_tags
     params[:savedplace][:tag].split(",").each do |tag|
       Usertag.create(tag: tag.strip, savedplace: @savedplace )
