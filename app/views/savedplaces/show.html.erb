@@ -73,11 +73,15 @@
         <% end %>
         <hr>
         <h6>Saved in</h6>
+        <% if @savedplace.collections.empty? %>
+        Not saved in any placelist yet.
+        <% else %>
         <ul class="list-unstyle">
         <% @savedplace.collections.each do |collection| %>
         <li><%= collection.name %></li>
         <% end %>
         </ul>
+        <% end %>
 
         <div class="text-right">
          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Add to a collection</button>
