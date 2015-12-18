@@ -2,18 +2,36 @@
   <div class="col-md-6 col-md-offset-3">
 
     <div class="row">
-    <h1><%= @savedplace.place.name %></h1>
+    <h1 class="nobottom"><%= @savedplace.place.name %></h1>
+    <p><%= link_to "#{@savedplace.place.city}", user_savedplaces_path(@user, :city => "#{@savedplace.place.city}") %></p>
     </div>
 
 <!-- show-place -->
   <div class="row">
     <div class="panel panel-default">
       <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            <div class="row-picture">
+              <%= image_tag @user.picture, class: "avatar" %>
+            </div>
+            <div class="row-content">
+              <div class="action-secondary"><i class="material-icons">share</i></div>
+              <h5 class="list-group-item-heading"><%= best_in_place [@user, @savedplace], :headline, :as => :input, place_holder: "Add a catchy headline" %></h5>
 
-        <h4 class = "headline"><%= best_in_place [@user, @savedplace], :headline, :as => :input, place_holder: "Add a catchy headline" %></h4>
-        <p class = "notop small">By <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
+              <p class="list-group-item-text"> <% if @savedplace.user.first_name %>
+          <%= @savedplace.user.first_name %> added on <%= @savedplace.created_at %></p>
+          <% else %>
+          <%= @savedplace.user.email %> added on <%= @savedplace.created_at %></p>
+          <% end %>
+            </div>
+          </div>
+          <div class="list-group-separator"></div>
+        </div>
 
-         <% if @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %>
+        <% if !@userpics.empty? %>
+         <div class="img-highlight" style="background-image: url(<%= image_url @userpics.first.image, class: "img-responsive" %>);"></div>
+         <% elsif @savedplace.place.photos.nil? || @savedplace.place.photos.empty? %>Add your own picture!
           <% else %>
             <div class="img-highlight" style="background-image: url(<%= image_url @savedplace.place.photos[0].fetch_url(1500), class: "img-responsive" %>);"></div>
           <% end %>

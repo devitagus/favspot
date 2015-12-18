@@ -24,7 +24,7 @@ class SavedplacesController < ApplicationController
     @savedplace = @user.savedplaces.find(params[:id])
     @savedplace.tag =  @savedplace.usertags.map(&:tag).join(", ")
     @userpic = Userpic.new
-
+    @userpics = @savedplace.userpics
     # DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@savedplace) do |savedplace, marker|
       marker.lat savedplace.place.latitude
@@ -57,6 +57,7 @@ class SavedplacesController < ApplicationController
     to_be_deleted_tags.each do |delete_tag|
       @savedplace.usertags.find_by(tag: delete_tag).destroy
     end
+
   end
 
   def savedplace_params

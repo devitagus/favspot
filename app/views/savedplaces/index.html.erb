@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
   <div class="col-lg-6 col-md-offset-3">
-    <div class="row">
+    <div class="row text-center">
+
+    <%= link_to image_tag("#{@user.picture}", class: "avatar-large"), root_path %>
+
     <% if params.include?(:city) %>
     <h1>All your places in <%= params[:city] %></h1>
     <% else %>
@@ -44,7 +47,7 @@
               <% end %>
             </div>
             <div class="right-text">
-              <h5><%= savedplace.place.name %></h5>
+              <h5><%=  link_to "#{savedplace.place.name}", user_savedplace_path(@user, savedplace) %></h5>
               <p><%= savedplace.place.address %></p>
 
               <p class="text-right"><%= link_to 'Go', user_savedplace_path(@user,savedplace), class: "btn btn-primary btn-xs"%></p>
